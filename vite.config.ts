@@ -14,6 +14,9 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg,json,mp3,wav}']
+      },
       manifest: {
         name: 'Lost Crown',
         short_name: 'Lost Crown',
