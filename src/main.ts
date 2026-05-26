@@ -65,6 +65,7 @@ class BootScene extends Phaser.Scene {
       color: '#fde68a',
     }).setOrigin(0.5);
 
+    this.load.setBaseURL(import.meta.env.BASE_URL);
     this.load.image('may',   '/assets/may.png');
     this.load.image('didi',  '/assets/didi.png');
     this.load.image('crown', '/assets/crown.png');
