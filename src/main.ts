@@ -5,6 +5,10 @@ import {
   playDoorOpen, playSearch, playEmpty,
   playCrownFound, playWinFanfare, playStep,
 } from './audio';
+import { registerSW } from 'virtual:pwa-register';
+
+registerSW({ immediate: true });
+
 
 // ─────────────────────────────────────────────
 //  CONSTANTS
