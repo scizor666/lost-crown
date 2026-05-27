@@ -471,9 +471,9 @@ class GameScene extends Phaser.Scene {
 
     // Search spots
     const spotPositions = [
-      { x: 160, y: H - 155 },
-      { x: W / 2, y: H - 165 },
-      { x: W - 160, y: H - 155 },
+      { x: 160, y: H - 300 },
+      { x: W / 2, y: H - 300 },
+      { x: W - 160, y: H - 300 },
     ];
 
     room.searchSpots.forEach((spot, i) => {
