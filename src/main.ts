@@ -259,6 +259,8 @@ class GameScene extends Phaser.Scene {
   constructor() { super('Game'); }
 
   create(): void {
+    this.navButtons = [];
+    this.miniMapCells = [];
     this.maze = generateMaze();
     this.currentCol = this.maze.startCol;
     this.currentRow = this.maze.startRow;
