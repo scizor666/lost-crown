@@ -112,7 +112,7 @@ class TitleScene extends Phaser.Scene {
     this.drawCastleSilhouette();
 
     // Title
-    const title = this.add.text(W / 2, 90, '👑 Lost Crown', {
+    const title = this.add.text(W / 2, 75, '👑 Lost Crown', {
       fontFamily: '"Nunito", sans-serif',
       fontSize: '56px',
       color: '#fbbf24',
@@ -128,24 +128,8 @@ class TitleScene extends Phaser.Scene {
       duration: 1200, ease: 'Sine.easeInOut',
     });
 
-    // May sprite
-    const may = this.add.image(W / 2 - 110, 310, 'may').setScale(0.38);
-    this.tweens.add({
-      targets: may, y: 310 - 10,
-      yoyo: true, repeat: -1,
-      duration: 1400, ease: 'Sine.easeInOut',
-    });
-
-    // Didi sprite
-    const didi = this.add.image(W / 2 + 110, 320, 'didi').setScale(0.30);
-    this.tweens.add({
-      targets: didi, y: 320 + 10,
-      yoyo: true, repeat: -1,
-      duration: 1100, ease: 'Sine.easeInOut',
-    });
-
-    // Crown sparkle
-    const crown = this.add.image(W / 2, 250, 'crown').setScale(0.22);
+    // Crown sparkle (center, below title)
+    const crown = this.add.image(W / 2, 170, 'crown').setScale(0.20);
     this.tweens.add({
       targets: crown,
       angle: { from: -8, to: 8 },
@@ -153,8 +137,24 @@ class TitleScene extends Phaser.Scene {
       duration: 900, ease: 'Sine.easeInOut',
     });
 
-    // Story text
-    this.add.text(W / 2, 400, [
+    // May sprite — pinned to left side, well clear of center text
+    const may = this.add.image(115, 410, 'may').setScale(0.30);
+    this.tweens.add({
+      targets: may, y: 400,
+      yoyo: true, repeat: -1,
+      duration: 1400, ease: 'Sine.easeInOut',
+    });
+
+    // Didi sprite — pinned to right side
+    const didi = this.add.image(W - 105, 415, 'didi').setScale(0.24);
+    this.tweens.add({
+      targets: didi, y: 425,
+      yoyo: true, repeat: -1,
+      duration: 1100, ease: 'Sine.easeInOut',
+    });
+
+    // Story text — center column, safely between the two character sprites
+    this.add.text(W / 2, 250, [
       'Princess May was playing with Didi and her cat fish pole…',
       'and accidentally lost her crown somewhere in the 25-room castle!',
       'Help them search every room to find it! 🐾',
@@ -163,43 +163,43 @@ class TitleScene extends Phaser.Scene {
       fontSize: '15px',
       color: '#e9d5ff',
       align: 'center',
-      wordWrap: { width: 640 },
+      wordWrap: { width: 480 },
       lineSpacing: 6,
     }).setOrigin(0.5);
 
     // Instructions
-    this.add.text(W / 2, 470, '🗝️  Use arrow keys (or on-screen buttons) to move between rooms\n🔍  Click objects in each room to search them', {
+    this.add.text(W / 2, 370, '🗝️  Use arrow keys (or on-screen buttons) to move\n🔍  Click objects in each room to search them', {
       fontFamily: '"Nunito", sans-serif',
       fontSize: '13px',
       color: '#c4b5fd',
       align: 'center',
-      wordWrap: { width: 600 },
+      wordWrap: { width: 420 },
       lineSpacing: 4,
     }).setOrigin(0.5);
 
     // Play button
     const btnBg = this.add.graphics();
     btnBg.fillStyle(0xfbbf24, 1);
-    btnBg.fillRoundedRect(W / 2 - 100, 510, 200, 55, 28);
+    btnBg.fillRoundedRect(W / 2 - 100, 460, 200, 55, 28);
 
-    const btnText = this.add.text(W / 2, 537, '✨  Play!', {
+    const btnText = this.add.text(W / 2, 487, '✨  Play!', {
       fontFamily: '"Nunito", sans-serif',
       fontSize: '26px',
       color: '#7c2d12',
       fontStyle: 'bold',
     }).setOrigin(0.5);
 
-    const btn = this.add.zone(W / 2, 537, 200, 55).setInteractive({ cursor: 'pointer' });
+    const btn = this.add.zone(W / 2, 487, 200, 55).setInteractive({ cursor: 'pointer' });
     btn.on('pointerover', () => {
       btnBg.clear();
       btnBg.fillStyle(0xfde68a, 1);
-      btnBg.fillRoundedRect(W / 2 - 100, 510, 200, 55, 28);
+      btnBg.fillRoundedRect(W / 2 - 100, 460, 200, 55, 28);
       this.tweens.add({ targets: btnText, scaleX: 1.06, scaleY: 1.06, duration: 100 });
     });
     btn.on('pointerout', () => {
       btnBg.clear();
       btnBg.fillStyle(0xfbbf24, 1);
-      btnBg.fillRoundedRect(W / 2 - 100, 510, 200, 55, 28);
+      btnBg.fillRoundedRect(W / 2 - 100, 460, 200, 55, 28);
       this.tweens.add({ targets: btnText, scaleX: 1, scaleY: 1, duration: 100 });
     });
     btn.on('pointerdown', () => {
@@ -726,28 +726,28 @@ class WinScene extends Phaser.Scene {
       });
     }
 
-    // Crown sparkle
-    const crown = this.add.image(W / 2, 130, 'crown').setScale(0.4).setAlpha(0);
-    this.tweens.add({ targets: crown, alpha: 1, scaleX: 0.45, scaleY: 0.45, yoyo: true, repeat: -1, duration: 800 });
-    this.tweens.add({ targets: crown, y: 120, yoyo: true, repeat: -1, duration: 1200, ease: 'Sine.easeInOut' });
+    // Crown sparkle — top center
+    const crown = this.add.image(W / 2, 80, 'crown').setScale(0.35).setAlpha(0);
+    this.tweens.add({ targets: crown, alpha: 1, scaleX: 0.40, scaleY: 0.40, yoyo: true, repeat: -1, duration: 800 });
+    this.tweens.add({ targets: crown, y: 70, yoyo: true, repeat: -1, duration: 1200, ease: 'Sine.easeInOut' });
 
-    // May + Didi celebrating
-    const may  = this.add.image(W / 2 - 100, 310, 'may').setScale(0.38);
-    const didi = this.add.image(W / 2 + 100, 320, 'didi').setScale(0.30);
-    this.tweens.add({ targets: may, y: 290, angle: { from: -8, to: 8 }, yoyo: true, repeat: -1, duration: 600 });
-    this.tweens.add({ targets: didi, y: 300, angle: { from: 8, to: -8 }, yoyo: true, repeat: -1, duration: 500 });
-
-    // Title
-    const title = this.add.text(W / 2, 210, '👑 Crown Found! 👑', {
+    // Title — below crown
+    const title = this.add.text(W / 2, 165, '👑 Crown Found! 👑', {
       fontFamily: '"Nunito", sans-serif',
       fontSize: '48px', color: '#fbbf24',
       stroke: '#7c2d12', strokeThickness: 8,
       shadow: { offsetX: 3, offsetY: 3, color: '#000', blur: 8, fill: true },
     }).setOrigin(0.5).setAlpha(0);
-    this.tweens.add({ targets: title, alpha: 1, y: 205, duration: 600, delay: 200, ease: 'Back.out' });
+    this.tweens.add({ targets: title, alpha: 1, y: 160, duration: 600, delay: 200, ease: 'Back.out' });
 
-    // Details
-    this.add.text(W / 2, 395, [
+    // May + Didi celebrating — sides of the screen, clear of all text
+    const may  = this.add.image(110, 420, 'may').setScale(0.30);
+    const didi = this.add.image(W - 100, 425, 'didi').setScale(0.24);
+    this.tweens.add({ targets: may, y: 405, angle: { from: -8, to: 8 }, yoyo: true, repeat: -1, duration: 600 });
+    this.tweens.add({ targets: didi, y: 410, angle: { from: 8, to: -8 }, yoyo: true, repeat: -1, duration: 500 });
+
+    // Details — center column between the two sprites
+    this.add.text(W / 2, 260, [
       `May found her crown in the ${data.roomName}`,
       `hiding inside the ${data.spotLabel}! 🎉`,
       '',
@@ -756,28 +756,29 @@ class WinScene extends Phaser.Scene {
       fontFamily: '"Nunito", sans-serif',
       fontSize: '18px', color: '#e9d5ff',
       align: 'center', lineSpacing: 6,
+      wordWrap: { width: 500 },
     }).setOrigin(0.5);
 
     // Play again button
     const btnBg = this.add.graphics();
     btnBg.fillStyle(0xfbbf24, 1);
-    btnBg.fillRoundedRect(W / 2 - 120, 490, 240, 58, 29);
+    btnBg.fillRoundedRect(W / 2 - 120, 440, 240, 58, 29);
 
-    const btnTxt = this.add.text(W / 2, 519, '🔄 Play Again!', {
+    const btnTxt = this.add.text(W / 2, 469, '🔄 Play Again!', {
       fontFamily: '"Nunito", sans-serif',
       fontSize: '26px', color: '#7c2d12', fontStyle: 'bold',
     }).setOrigin(0.5);
 
-    const zone = this.add.zone(W / 2, 519, 240, 58).setInteractive({ cursor: 'pointer' });
+    const zone = this.add.zone(W / 2, 469, 240, 58).setInteractive({ cursor: 'pointer' });
     zone.on('pointerover', () => {
       btnBg.clear();
       btnBg.fillStyle(0xfde68a, 1);
-      btnBg.fillRoundedRect(W / 2 - 120, 490, 240, 58, 29);
+      btnBg.fillRoundedRect(W / 2 - 120, 440, 240, 58, 29);
     });
     zone.on('pointerout', () => {
       btnBg.clear();
       btnBg.fillStyle(0xfbbf24, 1);
-      btnBg.fillRoundedRect(W / 2 - 120, 490, 240, 58, 29);
+      btnBg.fillRoundedRect(W / 2 - 120, 440, 240, 58, 29);
     });
     zone.on('pointerdown', () => {
       this.cameras.main.fadeOut(400, 0, 0, 0);
@@ -789,7 +790,7 @@ class WinScene extends Phaser.Scene {
       this.time.delayedCall(420, () => this.scene.start('Game'));
     });
 
-    const hintTxt = this.add.text(W / 2, 560, 'Press SPACE to play again', {
+    const hintTxt = this.add.text(W / 2, 515, 'Press SPACE to play again', {
       fontFamily: '"Nunito", sans-serif', fontSize: '13px', color: '#a78bfa',
     }).setOrigin(0.5);
     this.tweens.add({ targets: hintTxt, alpha: { from: 0.4, to: 1 }, yoyo: true, repeat: -1, duration: 900 });
