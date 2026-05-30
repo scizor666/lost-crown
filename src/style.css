@@ -36,3 +36,30 @@ html, body {
 
 /* Scrollbar hide */
 ::-webkit-scrollbar { display: none; }
+
+/* Arrow button styles */
+.nav-button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #374151;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-button.active {
+  background-color: #7c3aed;
+}
+
+.nav-button .arrow {
+  font-size: 24px;
+  color: #fff;
+}
+
+.nav-button .arrow.inactive {
+  color: #6b7280;
+}
